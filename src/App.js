@@ -35,12 +35,11 @@ const App = () => {
     <Routes>
       <Route
         path="/"
-        element={<Dashboard />}
-        // element={
-        //   isLoggedIn ? <Navigate to="/dashboard" /> : <LoginSignup />
-        // }
+        element={
+          isLoggedIn ? <Navigate to="/dashboard" /> : <LoginSignup />
+        }
       />
-      <Route >
+      <Route element={<ProtectedLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/Financials" element={<Financials />} />
