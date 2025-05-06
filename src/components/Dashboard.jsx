@@ -1,4 +1,3 @@
-import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import BasicInfo from "./BasicInfo";
 import AcademicInfo from "./AcademicInfo";
@@ -9,7 +8,6 @@ import "../index.css";
 function Dashboard() {
   return (
     <div className="dashboard-container">
-      <Sidebar />
       <div className="main-content">
         <Topbar />
         <div className="info-section">
