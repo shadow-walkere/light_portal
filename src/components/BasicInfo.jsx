@@ -1,65 +1,119 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../index.css";
 
 function BasicInfo() {
-  const [avatar, setAvatar] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    regNo: "S13/07832/22",
+    name: "Janex Wandera",
+    gender: "Male",
+    email: "ja.wandera@lightacademy.ac.ke",
+    dob: "2003-06-16",
+    campus: "Light Academy",
+  });
 
-  useEffect(() => {
-    // Load from localStorage if available
-    const savedAvatar = localStorage.getItem("avatar");
-    if (savedAvatar) {
-      setAvatar(savedAvatar);
-    }
-  }, []);
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setAvatar(reader.result);
-        localStorage.setItem("avatar", reader.result); // Save in localStorage
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const toggleEdit = () => setIsEditing(!isEditing);
+
   return (
-    <div className="card basic-info">
-      <h2>Basic information</h2>
-      <div className="info-grid">
-        <div className="avatar-section">
-          <img
-            src={avatar || "/default-avatar.png"} // fallback image
-            alt="Student Avatar"
-            className="avatar"
-          />
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-        </div>
-        <div className="info-details">
-          <div>
+    <div className="info-card profile-card">
+      <div className="profile-header-edit">
+        <h2 className="section-title">
+          <i className="fas fa-user icon"></i> Basic Information
+        </h2>
+        <button className="calendar-btn" onClick={toggleEdit}>
+          {isEditing ? "Save" : "Edit"}
+        </button>
+      </div>
+
+      <div className="info-columns">
+        <div className="info-block">
+          <p>
             <strong>Reg. No:</strong>{" "}
-            <span className="highlight">S13/07832/22</span>
-          </div>
-          <div>
-            <strong>Name:</strong> NAME
-          </div>
-          <div>
-            <strong>Gender:</strong> Male
-          </div>
-          <button className="calendar-btn">Get Academic Calendar</button>
+            {isEditing ? (
+              <input
+                name="regNo"
+                value={formData.regNo}
+                onChange={handleChange}
+              />
+            ) : (
+              <span className="highlight">{formData.regNo}</span>
+            )}
+          </p>
+          <p>
+            <strong>Name:</strong>{" "}
+            {isEditing ? (
+              <input
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            ) : (
+              formData.name
+            )}
+          </p>
+          <p>
+            <strong>Gender:</strong>{" "}
+            {isEditing ? (
+              <select
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+              >
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            ) : (
+              formData.gender
+            )}
+          </p>
+          <p>
+            <strong>Campus:</strong>{" "}
+            {isEditing ? (
+              <input
+                name="campus"
+                value={formData.campus}
+                onChange={handleChange}
+              />
+            ) : (
+              formData.campus
+            )}
+          </p>
         </div>
-        <div className="info-details">
-          <div>
+
+        <div className="info-block">
+          <p>
             <strong>Email:</strong>{" "}
-            <span className="highlight">janexwandera0@gmail.com</span>
-          </div>
-          <div>
-            <strong>Date Of Birth:</strong> 16/06/2003
-          </div>
-          <div>
-            <strong>Campus:</strong> LIGHT ACADEMY
-          </div>
+            {isEditing ? (
+              <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            ) : (
+              <span className="highlight">{formData.email}</span>
+            )}
+          </p>
+          <p>
+            <strong>Date of Birth:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="date"
+                name="dob"
+                value={formData.dob}
+                onChange={handleChange}
+              />
+            ) : (
+              new Date(formData.dob).toLocaleDateString()
+            )}
+          </p>
+          <button className="calendar-btn">
+            <i className="fas fa-calendar-alt"></i> Academic Calendar
+          </button>
         </div>
       </div>
     </div>
