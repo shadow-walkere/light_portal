@@ -14,7 +14,7 @@ function Dashboard() {
         <div className="grid-container">
           <BasicInfo />
           <AcademicInfo />
-          {/* <FeePayment /> */}
+          <FeePayment />
         </div>
       </div>
     </div>
