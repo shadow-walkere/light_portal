@@ -1,4 +1,4 @@
-import Sidebar from "./sidebar";
+import React from "react";
 import Topbar from "./Topbar";
 import BasicInfo from "./BasicInfo";
 import AcademicInfo from "./AcademicInfo";
@@ -9,15 +9,12 @@ import "../index.css";
 function Dashboard() {
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Topbar />
       <div className="main-content">
-        <Topbar />
-        <div className="info-section">
+        <div className="grid-container">
           <BasicInfo />
-          <div className="flex-row">
-            <AcademicInfo />
-            <FeePayment />
-          </div>
+          <AcademicInfo />
+          <FeePayment />
         </div>
       </div>
     </div>

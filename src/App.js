@@ -6,7 +6,7 @@ import LoginSignup from "./components/LoginSignup";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import Library from "./components/Library";
-import Financials from "./components/Financials";
+import FeeStructure from "./components/FeeStructure";
 
 const ProtectedLayout = () => {
   const isLoggedIn = !!localStorage.getItem("token");
@@ -42,7 +42,7 @@ const App = () => {
       <Route element={<ProtectedLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/Financials" element={<Financials />} />
+        <Route path="/FeeStructure" element={<FeeStructure />} />
         <Route path="/library" element={<Library />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
