@@ -56,7 +56,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="p-6 md:p-24 bg-gray-1000 min-h-screen flex-1 overflow-auto mt-[-4rem]">
+    <div className="p-6 md:p-24 bg-gray-1000 min-h-screen flex-1 overflow-auto md:mt-[-4rem]">
       {/* Header */}
       <header className="flex items-center justify-between bg-gradient-to-r from-blue-500 to-teal-500 text-white px-6 py-4 mb-8 rounded-lg shadow-lg">
         {/* Left Side: Welcome Message */}
